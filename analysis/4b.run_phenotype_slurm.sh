@@ -10,7 +10,7 @@ exec > >(tee -a "$log_file") 2>&1
 start_time=$(date +%s)
 
 # TODO: Set number of plates to process
-NUM_PLATES=None
+NUM_PLATES=1
 
 echo "===== STARTING SEQUENTIAL PROCESSING OF $NUM_PLATES PLATES ====="
 
@@ -30,6 +30,7 @@ for PLATE in $(seq 1 $NUM_PLATES); do
         --configfile "config/config.yml" \
         --latency-wait 60 \
         --rerun-triggers mtime \
+        --rerun-incomplete \
         --keep-going \
         --groups apply_ic_field_phenotype=extract_phenotype_info_group \
                 align_phenotype=extract_phenotype_info_group \

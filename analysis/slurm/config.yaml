@@ -10,7 +10,7 @@ default-resources:
     cpus_per_task: 1
     runtime: 400
     slurm_extra: "'--output=slurm/slurm_output/rule/%j.out'"
-jobs: 100
+jobs: 200
 
 set-resources:
    # preprocessing
@@ -29,7 +29,7 @@ set-resources:
     calculate_ic_sbs:
         mem_mb: 50000
     calculate_ic_phenotype:
-        mem_mb: 900000
+        mem_mb: 500000
 
     # sbs
     align_sbs:
@@ -106,7 +106,7 @@ set-resources:
 
     # merge
     fast_alignment:
-        mem_mb: 10000
+        mem_mb: 50000
         cpus_per_task: 4
     merge:
         mem_mb: 10000

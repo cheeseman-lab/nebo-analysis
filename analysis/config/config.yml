@@ -12,14 +12,106 @@
 # Parameters:
 all:
   root_fp: analysis_root/
+merge:
+  det_range:
+  - 0.056
+  - 0.072
+  initial_sites:
+  - - 166
+    - 45
+  - - 1066
+    - 286
+  - - 1356
+    - 354
+  - - 2361
+    - 602
+  - - 4443
+    - 1110
+  - - 6626
+    - 1685
+  merge_combo_fp: config/merge_combo.tsv
+  ph_metadata_channel: null
+  sbs_metadata_channel: null
+  sbs_metadata_cycle: 1
+  score: 0.1
+  threshold: 5
+phenotype:
+  align: true
+  alignments:
+    1:
+      steps:
+      - remove_channel: source
+        riders:
+        - 5
+        source: 4
+        target: 0
+      - remove_channel: source
+        riders:
+        - 6
+        - 7
+        - 8
+        - 9
+        source: 5
+        target: 0
+  cell_diameter: 300
+  cellprob_threshold: 0
+  channel_names:
+  - DAPI
+  - ConA
+  - Mitotracker
+  - Stat6
+  - NHS_ester
+  - Tubulin
+  - cMYC
+  - WGA
+  - CDPK1
+  cyto_index: 1
+  cyto_model: cyto3
+  dapi_index: 0
+  flow_threshold: 0.4
+  foci_channel: null
+  gpu: false
+  segmentation_method: cellpose
+  mode: null
+  nuclei_diameter: 100
+  reconcile: contained_in_cells
+  vacuole_channel_index: 8
+  vacuole_detection: true
+  vacuole_max_size: 5000
+  vacuole_min_size: 20
 preprocess:
   phenotype_channel_order: null
   phenotype_channel_order_flip: false
   phenotype_combo_fp: config/phenotype_combo.tsv
   phenotype_round_order:
   - 1
+  - 2
+  - 3
   phenotype_samples_fp: config/phenotype_samples.tsv
+  sample_fraction: 0.1
   sbs_channel_order: null
-  sbs_channel_order_flip: null
+  sbs_channel_order_flip: true
   sbs_combo_fp: config/sbs_combo.tsv
   sbs_samples_fp: config/sbs_samples.tsv
+  segment_cells: false
+sbs:
+  alignment_method: DAPI
+  cell_cellprob_threshold: 0
+  cell_diameter: 26.24542995840844
+  cell_flow_threshold: 1
+  cyto_index: 4
+  cyto_model: cyto3
+  dapi_index: 0
+  gpu: false
+  keep_extras: false
+  max_filter_width: 3
+  mode: null
+  nuclei_cellprob_threshold: 0.0
+  nuclei_diameter: 14.798554040663838
+  nuclei_flow_threshold: 0.4
+  peak_width: 5
+  reconcile: contained_in_cells
+  segment_cells: false
+  segmentation_cycle_index: 0
+  segmentation_method: cellpose
+  spot_detection_method: standard
