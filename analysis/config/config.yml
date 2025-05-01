@@ -13,7 +13,7 @@
 all:
   root_fp: analysis_root/
 merge:
-  det_range:
+  det_range: !!python/tuple
   - 0.056
   - 0.072
   initial_sites:
@@ -71,10 +71,10 @@ phenotype:
   flow_threshold: 0.4
   foci_channel: null
   gpu: false
-  segmentation_method: cellpose
   mode: null
   nuclei_diameter: 100
   reconcile: contained_in_cells
+  segmentation_method: cellpose
   vacuole_channel_index: 8
   vacuole_detection: true
   vacuole_max_size: 5000
