@@ -14,27 +14,27 @@ all:
   root_fp: analysis_root/
 merge:
   det_range: !!python/tuple
-  - 0.056
-  - 0.072
+  - 0.015
+  - 0.017
   initial_sites:
-  - - 166
-    - 45
-  - - 1066
-    - 286
-  - - 1356
-    - 354
-  - - 2361
-    - 602
-  - - 4443
-    - 1110
-  - - 6626
-    - 1685
+  - - 84
+    - 5
+  - - 1067
+    - 62
+  - - 2714
+    - 170
+  - - 4613
+    - 291
+  - - 6203
+    - 404
+  - - 6589
+    - 437
   merge_combo_fp: config/merge_combo.tsv
   ph_metadata_channel: null
   sbs_metadata_channel: null
   sbs_metadata_cycle: 1
   score: 0.1
-  threshold: 5
+  threshold: 10
 phenotype:
   align: true
   alignments:
@@ -97,7 +97,7 @@ preprocess:
 sbs:
   alignment_method: DAPI
   cell_cellprob_threshold: 0
-  cell_diameter: 26.24542995840844
+  cell_diameter: 15.264430440947832
   cell_flow_threshold: 1
   cyto_index: 4
   cyto_model: cyto3
@@ -107,7 +107,7 @@ sbs:
   max_filter_width: 3
   mode: null
   nuclei_cellprob_threshold: 0.0
-  nuclei_diameter: 14.798554040663838
+  nuclei_diameter: 10.155412503859614
   nuclei_flow_threshold: 0.4
   peak_width: 5
   reconcile: contained_in_cells
