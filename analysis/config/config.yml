@@ -1,25 +1,85 @@
 
-# BrieFlow configuration file
+# ~BrieFlow analysis configuration file~
 
-# Defining samples:
-#   Samples must be defined in the following TSV files with columns:
-#     sbs_samples.tsv: sample_fp, well, tile, cycle
-#     phenotype_samples.tsv: sample_fp, well, tile
-
-# Paths:
-#   Paths are resolved relative to the directory the workflow is run from
+# All paths are resolved relative to the directory the workflow is run from.
 
 # Parameters:
 all:
-  root_fp: analysis_root/
+  root_fp: analysis_root
+phenotype:
+  align: false
+  cell_cellprob_threshold: 1
+  cell_diameter: 300
+  cell_flow_threshold: 0.4
+  channel_names:
+  - DAPI
+  - ConA
+  - Stat6
+  - Mitotracker
+  - NHS_ester
+  - Tubulin
+  - WGA
+  - cMYC
+  - CDPK1
+  cp_method: cp_multichannel
+  custom_align: true
+  cyto_index: 4
+  cyto_model: cpsam
+  dapi_index: 0
+  foci_channel: null
+  gpu: false
+  helper_index: 5
+  min_distance_between_maxima: 25
+  mode: null
+  nuclei_cellprob_threshold: 0
+  nuclei_detection: false
+  nuclei_diameter: 100
+  nuclei_flow_threshold: 0.4
+  offsets_dict:
+    5:
+    - -5
+    - 15
+    7:
+    - -15
+    - 35
+    8:
+    - -15
+    - 35
+    9:
+    - -15
+    - 35
+    10:
+    - -15
+    - 35
+  reconcile: contained_in_cells
+  remove_channel_custom:
+  - 4
+  - 6
+  segment_cells: true
+  segmentation_method: cellpose
+  vacuole_channel_index: 8
+  vacuole_detection: true
+  vacuole_max_size: 200
+  vacuole_min_size: 10
 preprocess:
+  phenotype_best_focus_channel:
+  - 3
+  - 1
+  - 2
   phenotype_channel_order: null
   phenotype_channel_order_flip: false
   phenotype_combo_fp: config/phenotype_combo.tsv
   phenotype_round_order:
   - 1
+  - 2
+  - 3
   phenotype_samples_fp: config/phenotype_samples.tsv
+  phenotype_z_handling: best_focus
+  sample_fraction: 0.25
+  sbs_best_focus_channel:
+  - 0
   sbs_channel_order: null
-  sbs_channel_order_flip: null
+  sbs_channel_order_flip: true
   sbs_combo_fp: config/sbs_combo.tsv
   sbs_samples_fp: config/sbs_samples.tsv
+  sbs_z_handling: no_z

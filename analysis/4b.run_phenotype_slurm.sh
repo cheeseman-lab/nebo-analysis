@@ -10,7 +10,7 @@ exec > >(tee -a "$log_file") 2>&1
 start_time=$(date +%s)
 
 # TODO: Set number of plates to process
-NUM_PLATES=None
+NUM_PLATES=1
 
 echo "===== STARTING SEQUENTIAL PROCESSING OF $NUM_PLATES PLATES ====="
 
@@ -38,7 +38,8 @@ for PLATE in $(seq 1 $NUM_PLATES); do
                 identify_cytoplasm=extract_phenotype_cp_group \
                 extract_phenotype_cp=extract_phenotype_cp_group \
         --until all_phenotype \
-        --config plate_filter=$PLATE
+        --config plate_filter=$PLATE \
+        --rerun-incomplete -n 
     
     # Check if Snakemake was successful
     if [ $? -ne 0 ]; then

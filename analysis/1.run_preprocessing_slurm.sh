@@ -29,7 +29,6 @@ for PLATE in $(seq 1 $NUM_PLATES); do
         --snakefile "../brieflow/workflow/Snakefile" \
         --configfile "config/config.yml" \
         --latency-wait 60 \
-        --rerun-triggers mtime \
         --keep-going \
         --until all_preprocess \
         --config plate_filter=$PLATE
