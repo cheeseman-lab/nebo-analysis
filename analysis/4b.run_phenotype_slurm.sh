@@ -30,6 +30,7 @@ for PLATE in $(seq 1 $NUM_PLATES); do
         --configfile "config/config.yml" \
         --latency-wait 60 \
         --rerun-triggers mtime \
+        --rerun-incomplete \
         --keep-going \
         --groups apply_ic_field_phenotype=extract_phenotype_info_group \
                 align_phenotype=extract_phenotype_info_group \
@@ -38,8 +39,7 @@ for PLATE in $(seq 1 $NUM_PLATES); do
                 identify_cytoplasm=extract_phenotype_cp_group \
                 extract_phenotype_cp=extract_phenotype_cp_group \
         --until all_phenotype \
-        --config plate_filter=$PLATE \
-        --rerun-incomplete -n 
+        --config plate_filter=$PLATE -n
     
     # Check if Snakemake was successful
     if [ $? -ne 0 ]; then

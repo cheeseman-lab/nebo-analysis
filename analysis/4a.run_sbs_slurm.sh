@@ -10,7 +10,7 @@ exec > >(tee -a "$log_file") 2>&1
 start_time=$(date +%s)
 
 # TODO: Set number of plates to process
-NUM_PLATES=None
+NUM_PLATES=1
 
 echo "===== STARTING SEQUENTIAL PROCESSING OF $NUM_PLATES PLATES ====="
 
@@ -29,7 +29,6 @@ for PLATE in $(seq 1 $NUM_PLATES); do
         --snakefile "../brieflow/workflow/Snakefile" \
         --configfile "config/config.yml" \
         --latency-wait 60 \
-        --rerun-triggers mtime \
         --keep-going \
         --groups align_sbs=extract_sbs_info_group \
                 apply_ic_field_sbs=extract_sbs_info_group \
@@ -43,7 +42,7 @@ for PLATE in $(seq 1 $NUM_PLATES); do
                 call_reads=call_cells_group \
                 call_cells=call_cells_group \
         --until all_sbs \
-        --config plate_filter=$PLATE
+        --config plate_filter=$PLATE 
     
     # Check if Snakemake was successful
     if [ $? -ne 0 ]; then

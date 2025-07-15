@@ -31,7 +31,7 @@ for PLATE in $(seq 1 $NUM_PLATES); do
         --latency-wait 60 \
         --keep-going \
         --until all_preprocess \
-        --config plate_filter=$PLATE
+        --config plate_filter=$PLATE 
     
     # Check if Snakemake was successful
     if [ $? -ne 0 ]; then
