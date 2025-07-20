@@ -13,7 +13,7 @@
 all:
   root_fp: analysis_root/
 merge:
-  det_range: !!python/tuple
+  det_range:
   - 0.015
   - 0.017
   initial_sites:
