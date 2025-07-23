@@ -6,61 +6,61 @@
 # Parameters:
 all:
   root_fp: analysis_root
-phenotype:
-  align: false
-  cell_cellprob_threshold: 1
-  cell_diameter: 300
-  cell_flow_threshold: 0.4
-  channel_names:
-  - DAPI
-  - ConA
-  - Stat6
-  - Mitotracker
-  - NHS_ester
-  - Tubulin
-  - WGA
-  - cMYC
-  - CDPK1
-  cp_method: cp_multichannel
-  custom_align: true
-  cyto_index: 4
-  cyto_model: cpsam
-  dapi_index: 0
-  foci_channel: null
-  gpu: false
-  helper_index: 5
-  min_distance_between_maxima: 25
-  mode: null
-  nuclei_cellprob_threshold: 0
-  nuclei_detection: false
-  nuclei_diameter: 100
-  nuclei_flow_threshold: 0.4
-  offsets_dict:
-    5:
-    - -5
-    - 15
-    7:
-    - -15
-    - 35
-    8:
-    - -15
-    - 35
-    9:
-    - -15
-    - 35
-    10:
-    - -15
-    - 35
-  reconcile: contained_in_cells
-  remove_channel_custom:
-  - 4
-  - 6
-  segment_cells: true
-  segmentation_method: cellpose
-  vacuole_channel_index: 8
-  vacuole_detection: true
-  vacuole_max_size: 200
-  vacuole_min_size: 10
+# phenotype:
+#   align: false
+#   cell_cellprob_threshold: 1
+#   cell_diameter: 300
+#   cell_flow_threshold: 0.4
+#   channel_names:
+#   - DAPI
+#   - ConA
+#   - Stat6
+#   - Mitotracker
+#   - NHS_ester
+#   - Tubulin
+#   - WGA
+#   - cMYC
+#   - CDPK1
+#   cp_method: cp_multichannel
+#   custom_align: true
+#   cyto_index: 4
+#   cyto_model: cpsam
+#   dapi_index: 0
+#   foci_channel: null
+#   gpu: false
+#   helper_index: 5
+#   min_distance_between_maxima: 25
+#   mode: null
+#   nuclei_cellprob_threshold: 0
+#   nuclei_detection: false
+#   nuclei_diameter: 100
+#   nuclei_flow_threshold: 0.4
+#   offsets_dict:
+#     5:
+#     - -5
+#     - 15
+#     7:
+#     - -15
+#     - 35
+#     8:
+#     - -15
+#     - 35
+#     9:
+#     - -15
+#     - 35
+#     10:
+#     - -15
+#     - 35
+#   reconcile: contained_in_cells
+#   remove_channel_custom:
+#   - 4
+#   - 6
+#   segment_cells: true
+#   segmentation_method: cellpose
+#   vacuole_channel_index: 8
+#   vacuole_detection: true
+#   vacuole_max_size: 200
+#   vacuole_min_size: 10
 preprocess:
   phenotype_best_focus_channel:
   - 3
@@ -109,7 +109,7 @@ sbs:
   segment_cells: false
   df_barcode_library_fp: config/barcode_library.tsv
   sequencing_order: map_recomb
-  threshold_peaks: 150
+  threshold_peaks: 175
   call_reads_method: percentile
   bases:
   - G
@@ -131,7 +131,7 @@ sbs:
   max_distance: 2
   sort_calls: peak
   mode: null
-  peak_width: 15
+  peak_width: 12
   threshold_dapi: 470
   nucleus_area_min: 70
   nucleus_area_max: 800
