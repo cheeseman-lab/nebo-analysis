@@ -42,7 +42,7 @@ for PLATE in $(seq 1 $NUM_PLATES); do
                 call_reads=call_cells_group \
                 call_cells=call_cells_group \
         --until all_sbs \
-        --config plate_filter=$PLATE 
+        --config plate_filter=$PLATE
     
     # Check if Snakemake was successful
     if [ $? -ne 0 ]; then

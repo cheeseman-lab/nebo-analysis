@@ -39,7 +39,7 @@ for PLATE in $(seq 1 $NUM_PLATES); do
                 identify_cytoplasm=extract_phenotype_cp_group \
                 extract_phenotype_cp=extract_phenotype_cp_group \
         --until all_phenotype \
-        --config plate_filter=$PLATE -n
+        --config plate_filter=$PLATE
     
     # Check if Snakemake was successful
     if [ $? -ne 0 ]; then

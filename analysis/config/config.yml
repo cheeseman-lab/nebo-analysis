@@ -4,63 +4,118 @@
 # All paths are resolved relative to the directory the workflow is run from.
 
 # Parameters:
+aggregate:
+  agg_strategy: none
+  metadata_cols_fp: config/cell_data_metadata_cols.tsv
+  collapse_cols:
+  - gene_symbol_0
+  classifier_path: null
+  cell_classes: []
+  aggregate_combo_fp: config/aggregate_combo.tsv
+  filter_queries:
+  - mapped_single_gene == True
+  perturbation_name_col: gene_symbol_0
+  drop_cols_threshold: 0.1
+  drop_rows_threshold: 0.1
+  impute: true
+  contamination: 0.01
+  batch_cols:
+  - plate
+  - well
+  control_key: nontargeting
+  perturbation_id_col: gene_symbol_0
+  variance_or_ncomp: 135
+  num_align_batches: 1
+  agg_method: median
+  channel_combos:
+  - - DAPI
+    - ConA
+    - Stat6
+    - Mitotracker
+    - NHS_ester
+    - Tubulin
+    - WGA
+    - cMYC
+    - CDPK1
+  compartment_combos:
+  - cell
+  i_col: cell_i
+  j_col: cell_j
 all:
   root_fp: analysis_root
-# phenotype:
-#   align: false
-#   cell_cellprob_threshold: 1
-#   cell_diameter: 300
-#   cell_flow_threshold: 0.4
-#   channel_names:
-#   - DAPI
-#   - ConA
-#   - Stat6
-#   - Mitotracker
-#   - NHS_ester
-#   - Tubulin
-#   - WGA
-#   - cMYC
-#   - CDPK1
-#   cp_method: cp_multichannel
-#   custom_align: true
-#   cyto_index: 4
-#   cyto_model: cpsam
-#   dapi_index: 0
-#   foci_channel: null
-#   gpu: false
-#   helper_index: 5
-#   min_distance_between_maxima: 25
-#   mode: null
-#   nuclei_cellprob_threshold: 0
-#   nuclei_detection: false
-#   nuclei_diameter: 100
-#   nuclei_flow_threshold: 0.4
-#   offsets_dict:
-#     5:
-#     - -5
-#     - 15
-#     7:
-#     - -15
-#     - 35
-#     8:
-#     - -15
-#     - 35
-#     9:
-#     - -15
-#     - 35
-#     10:
-#     - -15
-#     - 35
-#   reconcile: contained_in_cells
-#   remove_channel_custom:
-#   - 4
-#   - 6
-#   segment_cells: true
-#   segmentation_method: cellpose
-#   vacuole_channel_index: 8
-#   vacuole_detection: true
-#   vacuole_max_size: 200
-#   vacuole_min_size: 10
+merge:
+  approach: stitch
+  fliplr: true
+  flipud: false
+  merge_combo_fp: config/merge_combo.tsv
+  overlap_fraction: 0.05
+  pheno_dedup_prior:
+    distance: true
+  phenotype_pixel_size: null
+  rot90: 0
+  sbs_dedup_prior:
+    distance: true
+    mapped_single_gene: false
+  sbs_metadata_cycle: 1
+  sbs_pixel_size: null
+  score: 0.04
+  stitched_image: false
+  threshold: 12
+phenotype:
+  align: false
+  cell_cellprob_threshold: 1
+  cell_diameter: 300
+  cell_flow_threshold: 0.4
+  channel_names:
+  - DAPI
+  - ConA
+  - Stat6
+  - Mitotracker
+  - NHS_ester
+  - Tubulin
+  - WGA
+  - cMYC
+  - CDPK1
+  cp_method: cp_multichannel
+  custom_align: true
+  cyto_index: 4
+  cyto_model: cpsam
+  dapi_index: 0
+  foci_channel: null
+  gpu: false
+  helper_index: 5
+  min_distance_between_maxima: 25
+  mode: null
+  nuclei_cellprob_threshold: 0
+  nuclei_detection: false
+  nuclei_diameter: 100
+  nuclei_flow_threshold: 0.4
+  offsets_dict:
+    5:
+    - -5
+    - 15
+    7:
+    - -15
+    - 35
+    8:
+    - -15
+    - 35
+    9:
+    - -15
+    - 35
+    10:
+    - -15
+    - 35
+  reconcile: contained_in_cells
+  remove_channel_custom:
+  - 4
+  - 6
+  segment_cells: true
+  segmentation_method: cellpose
+  vacuole_channel_index: 8
+  vacuole_detection: true
+  vacuole_max_size: 200
+  vacuole_min_size: 10
 preprocess:
   phenotype_best_focus_channel:
   - 3
@@ -85,72 +140,57 @@ preprocess:
   sbs_z_handling: no_z
 sbs:
   alignment_method: DAPI
+  barcode_info_cols:
+  - gene_symbol
+  bases:
+  - G
+  - T
+  - A
+  - C
+  call_reads_method: percentile
   channel_names:
   - DAPI
   - G
   - T
   - A
   - C
-  upsample_factor: 2
-  skip_cycles_indices:
-  - 4
-  manual_background_cycle_index: null
-  extra_channel_indices:
-  - 0
-  max_filter_width: 3
-  spot_detection_method: standard
-  dapi_cycle: 1
   cyto_cycle: 1
   cyto_cycle_index: 0
-  dapi_index: 0
   cyto_index: 1
-  segmentation_method: watershed
-  gpu: false
-  segment_cells: false
+  dapi_cycle: 1
+  dapi_index: 0
   df_barcode_library_fp: config/barcode_library.tsv
-  sequencing_order: map_recomb
-  threshold_peaks: 175
-  call_reads_method: percentile
-  bases:
-  - G
-  - T
-  - A
-  - C
-  q_min: 0
-  recomb_start: 7
-  recomb_end: 8
-  map_start: 1
-  map_end: 6
-  map_col: prefix_map
-  recomb_col: prefix_recomb
-  recomb_filter_col: Q_recomb
   error_correct: true
-  recomb_q_thresh: 0.5
-  barcode_info_cols:
-  - gene_symbol
-  max_distance: 2
-  sort_calls: peak
-  mode: null
-  peak_width: 12
-  threshold_dapi: 470
-  nucleus_area_min: 70
-  nucleus_area_max: 800
-  threshold_cell: 1300
+  extra_channel_indices:
+  - 0
+  gpu: false
   log_transform: false
-merge:
-  det_range:
-  - 0.015
-  - 0.017
-  initial_sites:
-  - - 2795
-    - 190
-  - - 5809
-    - 374
-  - - 2996
-    - 194
-  merge_combo_fp: config/merge_combo.tsv
-  ph_metadata_channel: null
-  sbs_metadata_channel: null
-  sbs_metadata_cycle: 1
-  score: 0.1
-  threshold: 10
+  manual_background_cycle_index: null
+  map_col: prefix_map
+  map_end: 6
+  map_start: 1
+  max_distance: 2
+  max_filter_width: 3
+  mode: null
+  nucleus_area_max: 800
+  nucleus_area_min: 70
+  peak_width: 18
+  q_min: 0
+  recomb_col: prefix_recomb
+  recomb_end: 8
+  recomb_filter_col: Q_recomb
+  recomb_q_thresh: 0.5
+  recomb_start: 7
+  resize_cycles: true
+  resize_method: downsample_majority
+  segment_cells: false
+  segmentation_method: watershed
+  sequencing_order: map_recomb
+  skip_cycles_indices: null
+  sort_calls: peak
+  spot_detection_method: standard
+  target_spatial_shape: null
+  threshold_cell: 1300
+  threshold_dapi: 470
+  threshold_peaks: 40
+  upsample_factor: 2
